@@ -19,12 +19,12 @@ jobs:
         run: npm run build
 
       - name: Deploy
-        uses: easingthemes/ssh-deploy@v2.2.14
+        uses: easingthemes/ssh-deploy@v4.1.4
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SERVER_IP: ${{ secrets.SERVER_IP }}
-          REMOTE_PATH: /var/www/gateways-portal/client/prod
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          TARGET: ${{ secrets.TARGET }}
           SCRIPT_AFTER: |
             git pull
             echo $RSYNC_STDOUT
