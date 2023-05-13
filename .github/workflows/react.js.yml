@@ -24,9 +24,10 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          SOURCE: "build/"
           TARGET: ${{ secrets.TARGET }}
           SCRIPT_AFTER: |
-            git pull
+            npm install
             echo $RSYNC_STDOUT
         with:
           args: --delete
