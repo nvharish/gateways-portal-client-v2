@@ -41,4 +41,4 @@ jobs:
             cd /var/www/gateways-portal/client/prod
             pwd
             rm -rf *
-            sudo scp -r -p build/* -i vps_github_temp.pem ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/var/www/gateways-portal/client/prod/
+            scp -r -p ./build/* -i ./vps_github_temp.pem ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/var/www/gateways-portal/client/prod/
