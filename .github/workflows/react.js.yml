@@ -24,10 +24,10 @@ jobs:
           host : ${{ secrets.HOST }}
           port: ${{ secrets.PORT }}
           username: ${{ secrets.USERNAME }}
-          password: Goutam#34
+          password: ${{ secrets.PASSWORD }}
           key: ${{ secrets.KEY }}
           script: |
-            cd /var/www/gateways-portal/client/prod
-            rm -rf *
             ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }}
+            ssh -t ${{ secrets.USERNAME }}@${{ secrets.HOST }} cd /var/www/gateways-portal/client/prod
+            ssh -t ${{ secrets.USERNAME }}@${{ secrets.HOST }} rm -rf *            
             scp -r -P ${{ secrets.PORT }} build/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/var/www/gateways-portal/client/prod/
