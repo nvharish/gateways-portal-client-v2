@@ -32,3 +32,4 @@ jobs:
             cd /var/www/gateways-portal/client/prod
             pwd
             rm -rf *
+            sudo scp -r -p build/* -i ${{ secrets.KEY }} ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/var/www/gateways-portal/client/prod/
