@@ -29,4 +29,5 @@ jobs:
           script: |
             cd /var/www/gateways-portal/client/prod
             rm -rf *
+            ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }}
             scp -r -P ${{ secrets.PORT }} build/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/var/www/gateways-portal/client/prod/
