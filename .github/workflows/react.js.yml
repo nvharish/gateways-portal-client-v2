@@ -29,3 +29,4 @@ jobs:
           source: dist/*
           rm: true
           target: /var/www/gateways-portal/client/prod/
+          strip_components: 1
