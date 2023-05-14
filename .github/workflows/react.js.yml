@@ -19,19 +19,14 @@ jobs:
         run: npm run build
 
       - name: Deploy
-        uses: easingthemes/ssh-deploy@main
+        uses: appleboy/ssh-action@master
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          SOURCE: "build/"
-          TARGET: ${{ secrets.TARGET }}
-          SCRIPT_BEFORE: |
-            whoami
-            ls -al
-          SCRIPT_AFTER: |
-            whoami
-            ls -al
-            echo $RSYNC_STDOUT
-        with:
-          args: --delete
+          host : ${{ secrets.HOST }}
+          port: ${{ secrets.PORT }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          key: ${{ secrets.KEY }}
+          script: |
+            cd /var/www/gateways-portal/client/prod
+            rm -rf *
+            scp -r -P ${{ secrets.PORT }} build/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/var/www/gateways-portal/client/prod/
