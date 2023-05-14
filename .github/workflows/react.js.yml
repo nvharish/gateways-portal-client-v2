@@ -24,7 +24,7 @@ jobs:
           host : ${{ secrets.HOST }}
           port: ${{ secrets.PORT }}
           username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
+          password: Goutam#34
           key: ${{ secrets.KEY }}
           script: |
             cd /var/www/gateways-portal/client/prod
