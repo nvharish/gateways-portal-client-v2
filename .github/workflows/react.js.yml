@@ -18,27 +18,14 @@ jobs:
       - name: Build
         run: npm run build
         
-      - name: Connect Server
-        run: echo "${{ secrets.KEY }}" > vps_github_temp
-        
-      - name: Test
-        run: ls
-        
-      - name: Test2
-        run: pwd
-
       - name: Deploy
-        uses: appleboy/ssh-action@master
+        uses: appleboy/scp-action@master
         with:
           host : ${{ secrets.HOST }}
           port: ${{ secrets.PORT }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           key: ${{ secrets.KEY }}
-          script: |
-            whoami
-            pwd
-            cd /var/www/gateways-portal/client/prod
-            pwd
-            rm -rf *
-            scp -i ./vps_github_temp -r -p ./build/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/var/www/gateways-portal/client/prod/
+          source: "dist/*"
+          rm: true
+          target: /var/www/gateways-portal/client/prod/
