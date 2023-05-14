@@ -29,3 +29,5 @@ jobs:
           script: |
             whoami
             pwd
+            cd /var/www/gateways-portal/client/prod
+            pwd
