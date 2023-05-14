@@ -19,7 +19,7 @@ jobs:
         run: npm run build
         
       - name: Connect Server
-        run: echo ${{ secrets.KEY }} >> vps_github_temp.pem
+        run: echo "${{ secrets.KEY }}" > vps_github_temp.pem
 
       - name: Deploy
         uses: appleboy/ssh-action@master
