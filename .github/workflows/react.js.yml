@@ -20,6 +20,12 @@ jobs:
         
       - name: Connect Server
         run: echo "${{ secrets.KEY }}" > vps_github_temp.pem
+        
+      - name: Test
+        run: cat vps_github_temp.pem
+        
+      - name: Test2
+        run: pwd
 
       - name: Deploy
         uses: appleboy/ssh-action@master
