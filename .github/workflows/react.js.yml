@@ -19,10 +19,10 @@ jobs:
         run: npm run build
         
       - name: Connect Server
-        run: echo "${{ secrets.KEY }}" > vps_github_temp.pem
+        run: echo "${{ secrets.KEY }}" > vps_github_temp
         
       - name: Test
-        run: cat vps_github_temp.pem
+        run: ls
         
       - name: Test2
         run: pwd
@@ -41,4 +41,4 @@ jobs:
             cd /var/www/gateways-portal/client/prod
             pwd
             rm -rf *
-            scp -r -p ./build/* -i ./vps_github_temp.pem ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/var/www/gateways-portal/client/prod/
+            scp -i ./vps_github_temp -r -p ./build/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/var/www/gateways-portal/client/prod/
