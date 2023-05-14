@@ -26,6 +26,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           key: ${{ secrets.KEY }}
-          source: "dist/*"
+          source: dist/*
           rm: true
           target: /var/www/gateways-portal/client/prod/
