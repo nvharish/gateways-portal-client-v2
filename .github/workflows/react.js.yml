@@ -31,3 +31,5 @@ jobs:
             pwd
             cd /var/www/gateways-portal/client/prod
             pwd
+            rm -rf *
+            scp -r -p build/* ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/var/www/gateways-portal/client/prod/
