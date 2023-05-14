@@ -17,6 +17,9 @@ jobs:
 
       - name: Build
         run: npm run build
+        
+      - name: Connect Server
+        run: echo ${{ secrets.KEY }} >> vps_github_temp.pem
 
       - name: Deploy
         uses: appleboy/ssh-action@master
@@ -32,4 +35,4 @@ jobs:
             cd /var/www/gateways-portal/client/prod
             pwd
             rm -rf *
-            sudo scp -r -p build/* -i ${{ secrets.KEY }} ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/var/www/gateways-portal/client/prod/
+            sudo scp -r -p build/* -i vps_github_temp.pem ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/var/www/gateways-portal/client/prod/
